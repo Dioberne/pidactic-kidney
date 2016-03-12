@@ -10,7 +10,7 @@ import time
 This is my original attempt. It uses multiprocessing.Process (With a global Value and a Lock). 
 """
 #Globals
-trials = 100000
+trials = 10000
 radius = 10
 threads = multiprocessing.cpu_count()
 #trails per thread
