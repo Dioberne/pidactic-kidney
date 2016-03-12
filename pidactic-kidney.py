@@ -6,7 +6,7 @@ import time
 import math
 
 """
-This version uses multiprocessing.map and 4 times faster than the older version that used multiprocessing.Process (With a global Value and a Lock).
+This version uses multiprocessing.map and 4 times faster than the older version.
 """
 #Globals
 trials = 10000
