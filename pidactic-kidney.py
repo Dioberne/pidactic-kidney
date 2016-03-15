@@ -1,12 +1,13 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import multiprocessing
 import random
 import time
 import math
+import numpy
 
 """
-This version uses multiprocessing.map and 4 times faster than the older version
+This version uses multiprocessing.map and runs 4 times faster than the older version
 """
 #Globals
 trials = 10000
@@ -31,13 +32,15 @@ def walk(rad):
             else:
                 x = x - 1
 
-            if not( -rad < x < rad): #x >= rad or x <= -rad:
+            if not( -rad < x < rad):
                 inside = False
 
     return steps / tpt
 
 
 if __name__ == '__main__':
+    print ("There are ", threads, " threads and ", tpt, " trials per thread.")
+
     start = time.time()
 
     jobs = []
@@ -50,6 +53,8 @@ if __name__ == '__main__':
     results = pool.map(walk, jobs)
 
     end = time.time()
-    print ("The average number of steps is ", math.ceil(sum(results) / len(results)), " steps")
-    print ("This program took ", end - start, " seconds to run")
-    print ("There are ", threads, " threads and ", tpt, " trials per thread.")
+    
+    print ("The average number of steps is ", int(sum(results) / len(results)), " steps")
+    print ("The simulation(s) took ", end - start, " seconds to run")
+
+    print("Mean:", numpy.mean(results), " Median:", numpy.median(results), " Stdev:", numpy.std(results))
